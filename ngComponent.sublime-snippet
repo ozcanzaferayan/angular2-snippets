@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+import { Component, OnInit } from '@angular/core';
+
+import { ${1:Example} } from '../models/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}';
+
+@Component({
+	selector: 'my-${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}',
+	templateUrl: 'app/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}.component.html',
+	styleUrls: ['app/css/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}.component.css']
+})
+
+export class $1Component implements OnInit { 
+	constructor() { }
+
+	ngOnInit() {
+
+	}
+}
+]]>
+	
+</content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<!-- <tabTrigger>hello</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+	<tabTrigger>ng2-component</tabTrigger>
+	<scope>source.ts</scope>
+	<description>NG2 component</description>
+</snippet>

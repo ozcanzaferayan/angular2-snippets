@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[
+import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
+
+import { ${1:Exapmle} } from '../models/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}';
+import { $1Service } from '../models/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}';
+
+@Component({
+	selector: 'my-${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}',
+	templateUrl: 'app/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}.component.html',
+	styleUrls: ['app/css/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}.component.css']
+})
+
+export class $1Component implements OnInit { 
+	${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s: $1[];
+
+	constructor(
+		private router: Router,
+		private ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}Service: $1Service) { }
+
+	ngOnInit(): void {
+		this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}Service.get$1s()
+      .then(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s => this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s = ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s);
+	}
+
+	gotoDetail(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}: $1): void {
+    let link = ['/detail', ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}.id];
+    this.router.navigate(link);
+  }
+}
+]]>
+	
+</content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<!-- <tabTrigger>hello</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+	<tabTrigger>ng2-coponent-service-detail</tabTrigger>
+	<scope>source.ts</scope>
+	<description>NG2 component with service and detail</description>
+</snippet>

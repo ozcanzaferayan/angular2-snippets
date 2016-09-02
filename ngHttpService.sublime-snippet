@@ -1,0 +1,70 @@
+<snippet>
+	<content><![CDATA[
+import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
+import { ${1:Example} } from '../models/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2-\l$2:)/g}';
+
+@Injectable() 
+export class $1Service{
+	
+	private headers = new Headers({'Content-Type': 'application/json'});
+	private ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}sUrl = 'app/${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s';  // URL to web api
+
+  constructor(private http: Http) { }
+
+  get$1s(): Promise<$1[]> {
+    return this.http.get(this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}sUrl)
+               .toPromise()
+               .then(response => response.json().data as $1[])
+               .catch(this.handleError);
+  }
+
+  get$1(id: number): Promise<$1> {
+    return this.get$1s()
+               .then(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s => 
+               	${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}s.find(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g} => ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}.id === id));
+  }
+
+  delete(id: number): Promise<void> {
+    let url = `\${this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}sUrl}/\${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  create(name: string): Promise<$1> {
+    return this.http
+      .post(this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}sUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+
+  update(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}: $1): Promise<$1> {
+    const url = `\${this.${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}sUrl}/\${${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}.id}`;
+    return this.http
+      .put(url, JSON.stringify(${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g}), {headers: this.headers})
+      .toPromise()
+      .then(() => ${1/^(\w)|(?:(\u))/(?1\l$1:)(?2\u$2:)/g})
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
+}
+]]>
+	
+</content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<!-- <tabTrigger>hello</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+	<tabTrigger>ng2-http-service</tabTrigger>
+	<scope>source.ts</scope>
+	<description>NG2 http service</description>
+</snippet>
